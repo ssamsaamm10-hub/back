@@ -50,7 +50,8 @@ app.use("/api/ai", aiRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`ReadEasy Arabic backend listening on http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 4000;
+  app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
+}
+export default app;
